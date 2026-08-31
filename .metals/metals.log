@@ -1,0 +1,234 @@
+2026.08.25 12:32:41 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.08.25 12:32:41 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+aug. 25, 2026 12:32:54 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.08.25 12:32:54 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.25 12:32:54 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.25 12:32:54 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.test.scala. Using presentation compiler with project's scala-library version: 3.3.8
+Exception in thread "pool-5-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:208)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026.08.25 12:32:54 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.test.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.25 12:32:54 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.test.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.25 12:32:54 INFO  Wrote configuration file for ide in: /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.bsp/scala-cli.json
+2026.08.25 12:32:54 INFO  time: ran 'scala-cli bspConfig' in 38ms
+2026.08.25 12:32:54 INFO  Attempting to connect to the build server...
+2026.08.25 12:32:54 INFO  Running BSP server List(/opt/homebrew/bin/scala-cli, bsp, --json-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-launcher-options.json, --envs-file, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-envs.json, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro)
+2026.08.25 12:32:54 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/bsp.trace.json or /Users/stinewittendorff/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.8.4/scala3-library_3-3.8.4-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/3.8.4/scala-library-3.8.4-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.8.4/scala3-library_3-3.8.4-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-library/3.8.4/scala-library-3.8.4-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0.pom
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0.pom
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0-sources.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/1.19.0/scalacheck_3-1.19.0.jar
+2026.08.25 12:32:55 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.25 12:32:55 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.25 12:32:56 INFO  time: Connected to build server in 1.47s
+2026.08.25 12:32:56 INFO  Connected to Build server: scala-cli v1.16.0
+2026.08.25 12:32:56 INFO  compiling 01-intro_94cb20a2e3 (4 scala sources)
+2026.08.25 12:32:56 INFO  time: compiled 01-intro_94cb20a2e3 in 0.56s
+2026.08.25 12:32:56 INFO  compiling 01-intro_94cb20a2e3-test (1 scala source)
+2026.08.25 12:32:57 INFO  time: compiled 01-intro_94cb20a2e3-test in 0.94s
+2026.08.25 12:32:58 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.08.25 12:33:02 INFO  time: indexed workspace in 6.46s
+2026.08.25 12:58:23 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 12:58:23 INFO  time: compiled 01-intro_94cb20a2e3 in 0.44s
+2026.08.25 13:00:20 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:00:20 INFO  time: compiled 01-intro_94cb20a2e3 in 0.12s
+2026.08.25 13:26:12 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:26:12 INFO  time: compiled 01-intro_94cb20a2e3 in 76ms
+2026.08.25 13:26:21 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:26:21 INFO  time: compiled 01-intro_94cb20a2e3 in 54ms
+2026.08.25 13:26:34 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:26:34 INFO  time: compiled 01-intro_94cb20a2e3 in 52ms
+2026.08.25 13:26:59 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:26:59 INFO  time: compiled 01-intro_94cb20a2e3 in 0.2s
+2026.08.25 13:27:21 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:27:21 INFO  time: compiled 01-intro_94cb20a2e3 in 0.16s
+2026.08.25 13:28:06 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:28:06 INFO  time: compiled 01-intro_94cb20a2e3 in 0.15s
+2026.08.25 13:28:13 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:28:13 INFO  time: compiled 01-intro_94cb20a2e3 in 89ms
+2026.08.25 13:28:37 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:28:37 INFO  time: compiled 01-intro_94cb20a2e3 in 64ms
+2026.08.25 13:31:12 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:31:12 INFO  time: compiled 01-intro_94cb20a2e3 in 0.23s
+2026.08.25 13:31:15 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:31:15 INFO  time: compiled 01-intro_94cb20a2e3 in 0.16s
+2026.08.25 13:31:21 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:31:21 INFO  time: compiled 01-intro_94cb20a2e3 in 0.14s
+2026.08.25 13:31:24 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:31:24 INFO  time: compiled 01-intro_94cb20a2e3 in 52ms
+2026.08.25 13:32:09 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:32:09 INFO  time: compiled 01-intro_94cb20a2e3 in 0.13s
+2026.08.25 13:48:03 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:48:03 INFO  time: compiled 01-intro_94cb20a2e3 in 0.22s
+2026.08.25 13:48:40 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:48:40 INFO  time: compiled 01-intro_94cb20a2e3 in 89ms
+2026.08.25 13:52:07 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:52:07 INFO  time: compiled 01-intro_94cb20a2e3 in 81ms
+2026.08.25 13:52:54 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 13:52:54 INFO  time: compiled 01-intro_94cb20a2e3 in 80ms
+aug. 25, 2026 2:41:56 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4480
+2026.08.25 14:42:07 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 14:42:07 INFO  time: compiled 01-intro_94cb20a2e3 in 76ms
+2026.08.25 14:46:40 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 14:46:40 INFO  time: compiled 01-intro_94cb20a2e3 in 78ms
+2026.08.25 14:47:19 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 14:47:19 INFO  time: compiled 01-intro_94cb20a2e3 in 70ms
+2026.08.25 14:50:31 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 14:50:31 INFO  time: compiled 01-intro_94cb20a2e3 in 80ms
+2026.08.25 17:50:52 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 17:50:52 INFO  time: compiled 01-intro_94cb20a2e3 in 0.18s
+2026.08.25 17:51:07 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 17:51:07 INFO  time: compiled 01-intro_94cb20a2e3 in 0.15s
+2026.08.25 17:51:22 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 17:51:22 INFO  time: compiled 01-intro_94cb20a2e3 in 0.16s
+2026.08.25 18:03:36 INFO  Created report: Optional[file:///Users/stinewittendorff/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/01-intro/Exercises.scala]
+2026.08.25 18:03:36 INFO  java.lang.StringIndexOutOfBoundsException: Index 0 out of bounds for length 0 (full report at: "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/.reports/metals-full/2026-08-25/r_compiler-error_(01-intro_5f94cb20a2e3)_18-03-36-987.md")
+aug. 25, 2026 6:04:54 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 7149
+2026.08.25 18:18:59 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:18:59 INFO  time: compiled 01-intro_94cb20a2e3 in 97ms
+2026.08.25 18:22:04 INFO  Created report: Optional[file:///Users/stinewittendorff/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/01-intro/Exercises.scala]
+2026.08.25 18:22:04 INFO  java.lang.NullPointerException: Cannot invoke "dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing()" because the return value of "dotty.tools.dotc.parsing.Scanners$Indented.outer()" is null (full report at: "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/.reports/metals-full/2026-08-25/r_compiler-error_(01-intro_5f94cb20a2e3)_18-22-04-470.md")
+2026.08.25 18:22:04 INFO  Created report: Optional[file:///Users/stinewittendorff/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/01-intro/Exercises.scala]
+2026.08.25 18:22:04 INFO  java.lang.NullPointerException: Cannot invoke "dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing()" because the return value of "dotty.tools.dotc.parsing.Scanners$Indented.outer()" is null (full report at: "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/.reports/metals-full/2026-08-25/r_compiler-error_(01-intro_5f94cb20a2e3)_18-22-04-656.md")
+2026.08.25 18:22:04 WARN  Could not find semantic tokens for: file:///Users/stinewittendorff/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/01-intro/Exercises.scala
+2026.08.25 18:25:51 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:25:51 INFO  time: compiled 01-intro_94cb20a2e3 in 99ms
+2026.08.25 18:28:47 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:28:47 INFO  time: compiled 01-intro_94cb20a2e3 in 91ms
+2026.08.25 18:31:38 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:31:38 INFO  time: compiled 01-intro_94cb20a2e3 in 96ms
+2026.08.25 18:31:53 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:31:53 WARN  Could not load snapshot text for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala
+2026.08.25 18:31:53 WARN  Could not load snapshot text for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala
+2026.08.25 18:31:53 INFO  time: compiled 01-intro_94cb20a2e3 in 84ms
+2026.08.25 18:32:01 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:32:01 INFO  time: compiled 01-intro_94cb20a2e3 in 0.11s
+2026.08.25 18:32:23 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:32:23 INFO  time: compiled 01-intro_94cb20a2e3 in 81ms
+2026.08.25 18:35:54 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:35:54 INFO  time: compiled 01-intro_94cb20a2e3 in 0.11s
+2026.08.25 18:36:05 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:36:05 INFO  time: compiled 01-intro_94cb20a2e3 in 80ms
+aug. 25, 2026 6:38:25 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8571
+2026.08.25 18:39:59 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:39:59 INFO  time: compiled 01-intro_94cb20a2e3 in 85ms
+2026.08.25 18:40:16 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.25 18:40:16 INFO  time: compiled 01-intro_94cb20a2e3 in 76ms
+2026.08.31 10:20:04 INFO  Shutting down server
+2026.08.31 10:20:04 INFO  Memory monitor stopped
+2026.08.31 10:20:04 INFO  shutting down Metals
+2026.08.31 10:20:04 INFO  Shut down connection with build server.
+2026.08.31 10:20:04 INFO  Exiting server
+2026.08.31 10:23:02 INFO  Started: Metals version 1.6.8 in folders '/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework' for client Visual Studio Code 1.100.0.
+2026.08.31 10:23:02 INFO  Memory monitor started
+2026.08.31 10:23:02 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.08.31 10:23:02 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.31 10:23:05 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.31 10:23:05 INFO  Attempting to connect to the build server...
+2026.08.31 10:23:05 INFO  Running BSP server List(/opt/homebrew/bin/scala-cli, bsp, --json-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-launcher-options.json, --envs-file, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-envs.json, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro)
+2026.08.31 10:23:05 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/bsp.trace.json or /Users/stinewittendorff/Library/Caches/org.scalameta.metals/bsp.trace.json
+2026.08.31 10:23:06 INFO  BSP server: Starting compilation server
+2026.08.31 10:23:08 INFO  BSP server: Checking https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.31 10:23:08 INFO  BSP server: Failed to check https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.31 10:23:08 INFO  BSP server: Downloading https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.31 10:23:08 INFO  BSP server: Downloaded https://repo1.maven.org/maven2/org/scalacheck/scalacheck_3/maven-metadata.xml
+2026.08.31 10:23:08 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 10:23:08 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 10:23:08 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 10:23:08 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 10:23:08 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 10:23:09 INFO  time: Connected to build server in 3.78s
+2026.08.31 10:23:09 INFO  Connected to Build server: scala-cli v1.16.0
+2026.08.31 10:23:08 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 10:23:08 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 10:23:08 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 10:23:08 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 10:23:08 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 10:23:10 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.08.31 10:23:10 INFO  time: indexed workspace in 1.37s
+2026.08.31 10:23:10 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 10:23:10 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 10:23:10 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 10:23:10 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 10:23:10 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+aug. 31, 2026 10:23:49 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.08.31 12:10:51 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 12:10:51 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 12:10:51 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 12:10:51 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 12:10:51 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 12:10:56 INFO  Shutting down server
+2026.08.31 12:10:56 INFO  Memory monitor stopped
+2026.08.31 12:10:56 INFO  shutting down Metals
+2026.08.31 12:10:56 INFO  Shut down connection with build server.
+2026.08.31 12:10:56 INFO  BSP server: Aug 31, 2026 12:10:56 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+2026.08.31 12:10:56 INFO  BSP server: WARNING: Notification threw an exception: {
+2026.08.31 12:10:56 INFO  BSP server:   "jsonrpc": "2.0",
+2026.08.31 12:10:56 INFO  BSP server:   "method": "build/exit",
+2026.08.31 12:10:56 INFO  Exiting server
+2026.08.31 16:19:17 INFO  Started: Metals version 1.6.8 in folders '/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework' for client Visual Studio Code 1.100.0.
+2026.08.31 16:19:17 INFO  Memory monitor started
+2026.08.31 16:19:17 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+aug. 31, 2026 4:19:17 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.08.31 16:19:17 INFO  no build target found for /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/Exercises.scala. Using presentation compiler with project's scala-library version: 3.3.8
+2026.08.31 16:19:17 INFO  Attempting to connect to the build server...
+2026.08.31 16:19:17 INFO  Running BSP server List(/opt/homebrew/bin/scala-cli, bsp, --json-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-options-v2.json, --json-launcher-options, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-launcher-options.json, --envs-file, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro/.scala-build/ide-envs.json, /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/01-intro)
+2026.08.31 16:19:17 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/.metals/bsp.trace.json or /Users/stinewittendorff/Library/Caches/org.scalameta.metals/bsp.trace.json
+aug. 31, 2026 4:19:18 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2026.08.31 16:19:18 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:19:18 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:19:18 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:19:18 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:19:18 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 16:19:17 INFO  time: Connected to build server in 0.78s
+2026.08.31 16:19:18 INFO  Connected to Build server: scala-cli v1.16.0
+2026.08.31 16:19:18 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:19:18 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:19:18 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:19:18 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:19:18 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 16:19:19 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.08.31 16:19:19 INFO  time: indexed workspace in 1.06s
+2026.08.31 16:19:19 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:19:19 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:19:19 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:19:19 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:19:19 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 16:21:24 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:21:24 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:21:24 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:21:24 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:21:24 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 16:21:24 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.31 16:21:26 INFO  time: compiled 01-intro_94cb20a2e3 in 1.17s
+2026.08.31 16:26:33 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:26:33 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:26:33 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:26:33 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:26:33 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026.08.31 16:26:33 INFO  compiling 01-intro_94cb20a2e3 (1 scala source)
+2026.08.31 16:26:33 INFO  time: compiled 01-intro_94cb20a2e3 in 0.12s
+2026.08.31 16:26:51 INFO  BSP server: [hint] ./project.scala:5:21
+2026.08.31 16:26:51 INFO  BSP server: [hint] "scalacheck is outdated, update to 1.20.0"
+2026.08.31 16:26:51 INFO  BSP server: [hint]      scalacheck 1.19.0 -> org.scalacheck::scalacheck:1.20.0
+2026.08.31 16:26:51 INFO  BSP server: [hint] //> using test.dep "org.scalacheck::scalacheck:1.19.0"
+2026.08.31 16:26:51 INFO  BSP server: [hint]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
