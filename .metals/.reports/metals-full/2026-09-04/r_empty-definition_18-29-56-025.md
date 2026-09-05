@@ -1,3 +1,19 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/02-adt/Exercises.scala:
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/02-adt/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -foldLeft.
+	 -foldLeft#
+	 -foldLeft().
+	 -scala/Predef.foldLeft.
+	 -scala/Predef.foldLeft#
+	 -scala/Predef.foldLeft().
+offset: 2595
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/02-adt/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -77,72 +93,59 @@ object List:
 
   def foldLeft[A, B] (l: List[A], z: B, f: (B, A) => B): B = l match
     case Nil => z
-    case Cons(h,t) => List.foldLeft(t,f(z,h),f)
+    case Cons(h,t) => f(h,z) t.@@foldLeft
+  
+    
 
   // Exercise 8
 
-  def product (as: List[Int]): Int = 
-    List.foldLeft(as,1, (_*_))
+  def product (as: List[Int]): Int = ???
 
-  def length1[A] (as: List[A]): Int = 
-    List.foldLeft(as,0,(acc,_) => acc + 1)
+  def length1[A] (as: List[A]): Int = ???
 
   // Exercise 9
 
-  def reverse[A] (l: List[A]): List[A] = 
-    List.foldLeft(l, Nil, (acc,h) => Cons(h,acc))
+  def reverse[A] (l: List[A]): List[A] = ???
  
   // Exercise 10
 
-  def foldRight1[A, B] (l: List[A], z: B, f: (A, B) => B): B = 
-    List.foldLeft(reverse(l), z, (b,a) => f(a,b))
+  def foldRight1[A, B] (l: List[A], z: B, f: (A, B) => B): B = ???
 
   // Exercise 11
-    //foldRight builds up, from right to left, a chain of "pending update" functions
-    // (each one saying "apply f for element a, then hand off to whatever was build
-    // from the elements after it"), starting from the identity function and only
-    // when that whole chain is finally applied to z does actual left-to-right foldLeft
-    // computation run
-  def foldLeft1[A, B] (l: List[A], z: B, f: (B, A) => B): B = 
-    foldRight(l, (b: B) => b, (a, g) => b => g(f(b, a))) (z)
+
+  def foldLeft1[A, B] (l: List[A], z: B, f: (B, A) => B): B = ???
  
   // Exercise 12
 
-  def concat[A] (l: List[List[A]]): List[A] = 
-    foldRight(l, Nil, append)
+  def concat[A] (l: List[List[A]]): List[A] = ???
   
   // Exercise 13
 
-  def filter[A] (l: List[A], p: A => Boolean): List[A] = 
-    foldRight(l,Nil, (h,t) => if p(h) then Cons(h,t) else t)
+  def filter[A] (l: List[A], p: A => Boolean): List[A] = ???
  
   // Exercise 14
 
-  def flatMap[A,B] (l: List[A], f: A => List[B]): List[B] = 
-    (concat(map(l,f)))
+  def flatMap[A,B] (l: List[A], f: A => List[B]): List[B] = ???
 
   // Exercise 15
 
-  def filter1[A] (l: List[A], p: A => Boolean): List[A] = 
-    flatMap(l, l1 => if p(l1) then List(l1) else Nil)
+  def filter1[A] (l: List[A], p: A => Boolean): List[A] = ???
+
   // Exercise 16
 
-  def addPairwise (l: List[Int], r: List[Int]): List[Int] = 
-    (l, r) match
-      case (_, Nil) => Nil
-      case (Nil, _) => Nil
-      case (Cons(h1, t1), Cons(h2, t2)) => Cons(h1 + h2, addPairwise(t1, t2))
-    
+  def addPairwise (l: List[Int], r: List[Int]): List[Int] = ???
 
   // Exercise 17
 
-  def zipWith[A, B, C] (l: List[A], r: List[B], f: (A,B) => C): List[C] = 
-    (l, r) match
-      case (_, Nil) => Nil
-      case (Nil, _) => Nil
-      case (Cons(h1, t1) , Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2, f))
-    
+  def zipWith[A, B, C] (l: List[A], r: List[B], f: (A,B) => C): List[C] = ???
 
   // Exercise 18
 
   def hasSubsequence[A] (sup: List[A], sub: List[A]): Boolean = ???
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

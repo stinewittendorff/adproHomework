@@ -1,0 +1,281 @@
+error id: 67AD08EF0F42E5EA7D7B89DD2F9BC54F
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/02-adt/Exercises.scala
+### java.lang.NullPointerException: Cannot invoke "dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing()" because the return value of "dotty.tools.dotc.parsing.Scanners$Indented.outer()" is null
+
+occurred in the presentation compiler.
+
+
+
+action parameters:
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/02-adt/Exercises.scala
+text:
+```scala
+// Advanced Programming, A. Wąsowski, IT University of Copenhagen
+// Based on Functional Programming in Scala, 2nd Edition
+
+package adpro.adt
+
+import java.util.NoSuchElementException
+
+enum List[+A]:
+  case Nil
+  case Cons(head: A, tail: List[A])
+
+
+object List: 
+
+  def head[A] (l: List[A]): A = l match
+    case Nil => throw NoSuchElementException() 
+    case Cons(h, _) => h                                                                                                                                                                                                                                       
+  
+  def apply[A] (as: A*): List[A] =
+    if as.isEmpty then Nil
+    else Cons(as.head, apply(as.tail*))
+
+  def append[A] (l1: List[A], l2: List[A]): List[A] =
+    l1 match
+      case Nil => l2
+      case Cons(h, t) => Cons(h, append(t, l2)) 
+
+  def foldRight[A, B] (l: List[A], z: B, f: (A, B) => B): B = l match
+    case Nil => z
+    case Cons(a, as) => f(a, foldRight(as, z, f))
+    
+  def map[A, B] (l: List[A], f: A => B): List[B] =
+    foldRight[A, List[B]] (l, Nil, (a, z) => Cons(f(a), z))
+
+  // Exercise 1 (is to be solved without programming)
+
+  // The value of the following match expression would be 3, because it would match the case '
+  // case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
+
+  // Exercise 2
+
+  def tail[A] (l: List[A]): List[A] = l match
+    case Nil => throw NoSuchElementException()
+    case Cons(_, t) => t
+
+  // Exercise 3
+  
+  def drop[A] (l: List[A], n: Int): List[A] = n match
+    case n if n <= 0 => l
+    case n => drop (tail(l), (n-1))
+
+  // Exercise 4
+
+  def dropWhile[A] (l: List[A], p: A => Boolean): List[A] = l match
+    case Nil => l
+    case Cons(h, t) => if p(h) then dropWhile(t, p) else l
+
+  // Exercise 5
+ 
+  def init[A] (l: List[A]): List[A] = l match
+    case Nil => throw NoSuchElementException()
+    case Cons(_,Nil) => Nil
+    case Cons(h, t) => Cons(h, init(t))
+
+    //This function is linear in both time and space because to drop the last element of the list, you have to walk all the way to the end
+    //to find where the list terminates.
+    // So time O(n) because the list has to go through the entire list to hit the Cons(_,Nil). And then space O(n) because it allocates a 
+    // brand new Cons(h,..) cell for every element except the last, so the output itself is O(n) new memory.
+  
+
+  // Exercise 6
+
+  def length[A] (l: List[A]): Int = 
+    List.foldRight(l,0,(_, acc) => 1 + acc)
+
+  // Exercise 7
+
+  def foldLeft[A, B] (l: List[A], z: B, f: (B, A) => B): B = l match
+    case Nil => z
+    case Cons(h,t) => List.foldLeft(t,f(z,h),f)
+
+  // Exercise 8
+
+  def product (as: List[Int]): Int = 
+    List.foldLeft(as,1, (_*_))
+
+  def length1[A] (as: List[A]): Int = 
+    List.foldLeft(as,0,(acc,_) => acc + 1)
+
+  // Exercise 9
+
+  def reverse[A] (l: List[A]): List[A] = 
+    List.foldLeft(l, Nil, (acc,h) => Cons(h,acc))
+ 
+  // Exercise 10
+
+  def foldRight1[A, B] (l: List[A], z: B, f: (A, B) => B): B = 
+    List.foldLeft(reverse(l), z, (b,a) => f(a,b))
+
+  // Exercise 11
+    //foldRight builds up, from right to left, a chain of "pending update" functions
+    // (each one saying "apply f for element a, then hand off to whatever was build
+    // from the elements after it"), starting from the identity function and only
+    // when that whole chain is finally applied to z does actual left-to-right foldLeft
+    // computation run
+  def foldLeft1[A, B] (l: List[A], z: B, f: (B, A) => B): B = 
+    foldRight(l, (b: B) => b, (a, g) => b => g(f(b, a))) (z)
+ 
+  // Exercise 12
+
+  def concat[A] (l: List[List[A]]): List[A] = 
+    foldRight(l, Nil, append)
+  
+  // Exercise 13
+
+  def filter[A] (l: List[A], p: A => Boolean): List[A] = 
+    foldRight(l,Nil, (h,t) => if p(h) then Cons(h,t) else t)
+ 
+  // Exercise 14
+
+  def flatMap[A,B] (l: List[A], f: A => List[B]): List[B] = 
+    (concat(map(l,f)))
+
+  // Exercise 15
+
+  def filter1[A] (l: List[A], p: A => Boolean): List[A] = 
+    flatMap(l, l1 => if p(l1) then List(l1) else Nil)
+  // Exercise 16
+
+  def addPairwise (l: List[Int], r: List[Int]): List[Int] = 
+    (list1, list2) match
+      case (_, Nil) => Nil
+      case (Nil, _) => Nil
+      case (Cons(h1, t1), Cons(h2, t2)) => Cons(h2), addPairwise())
+    
+
+  // Exercise 17
+
+  def zipWith[A, B, C] (l: List[A], r: List[B], f: (A,B) => C): List[C] = ???
+
+  // Exercise 18
+
+  def hasSubsequence[A] (sup: List[A], sub: List[A]): Boolean = ???
+
+```
+
+
+presentation compiler configuration:
+Scala version: 3.8.4-bin-nonbootstrapped
+Classpath:
+<HOME>/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.8.4/scala3-library_3-3.8.4.jar [exists ], <HOME>/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/3.8.4/scala-library-3.8.4.jar [exists ]
+Options:
+
+
+
+
+
+#### Error stacktrace:
+
+```
+dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing(Scanners.scala:1666)
+	dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing(Scanners.scala:1666)
+	dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing(Scanners.scala:1666)
+	dotty.tools.dotc.parsing.Scanners$Scanner.observeOutdented(Scanners.scala:727)
+	dotty.tools.dotc.parsing.Parsers$Parser.statSepOrEnd(Parsers.scala:393)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockStatSeq$$anonfun$1(Parsers.scala:5043)
+	dotty.tools.dotc.parsing.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:559)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockStatSeq(Parsers.scala:5046)
+	dotty.tools.dotc.parsing.Parsers$Parser.block(Parsers.scala:3065)
+	dotty.tools.dotc.parsing.Parsers$Parser.caseClause(Parsers.scala:3262)
+	dotty.tools.dotc.parsing.Parsers$Parser.$anonfun$22$$anonfun$1(Parsers.scala:2712)
+	dotty.tools.dotc.parsing.Parsers$Parser.caseClauses(Parsers.scala:3226)
+	dotty.tools.dotc.parsing.Parsers$Parser.$anonfun$22(Parsers.scala:2712)
+	dotty.tools.dotc.parsing.Parsers$Parser.enclosed(Parsers.scala:623)
+	dotty.tools.dotc.parsing.Parsers$Parser.inBracesOrIndented(Parsers.scala:653)
+	dotty.tools.dotc.parsing.Parsers$Parser.matchClause(Parsers.scala:2712)
+	dotty.tools.dotc.parsing.Parsers$Parser.recur$4(Parsers.scala:1268)
+	dotty.tools.dotc.parsing.Parsers$Parser.infixOps(Parsers.scala:1277)
+	dotty.tools.dotc.parsing.Parsers$Parser.postfixExprRest(Parsers.scala:2810)
+	dotty.tools.dotc.parsing.Parsers$Parser.postfixExpr(Parsers.scala:2801)
+	dotty.tools.dotc.parsing.Parsers$Parser.expr1(Parsers.scala:2602)
+	dotty.tools.dotc.parsing.Parsers$Parser.expr(Parsers.scala:2489)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockStatSeq$$anonfun$1(Parsers.scala:5027)
+	dotty.tools.dotc.parsing.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:559)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockStatSeq(Parsers.scala:5046)
+	dotty.tools.dotc.parsing.Parsers$Parser.block(Parsers.scala:3065)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockExpr$$anonfun$1(Parsers.scala:3057)
+	dotty.tools.dotc.parsing.Parsers$Parser.enclosed(Parsers.scala:623)
+	dotty.tools.dotc.parsing.Parsers$Parser.inBracesOrIndented(Parsers.scala:653)
+	dotty.tools.dotc.parsing.Parsers$Parser.inDefScopeBraces(Parsers.scala:659)
+	dotty.tools.dotc.parsing.Parsers$Parser.blockExpr(Parsers.scala:3055)
+	dotty.tools.dotc.parsing.Parsers$Parser.simpleExpr(Parsers.scala:2874)
+	dotty.tools.dotc.parsing.Parsers$Parser.$init$$$anonfun$10(Parsers.scala:2825)
+	dotty.tools.dotc.parsing.Parsers$Parser.postfixExpr(Parsers.scala:2801)
+	dotty.tools.dotc.parsing.Parsers$Parser.expr1(Parsers.scala:2602)
+	dotty.tools.dotc.parsing.Parsers$Parser.expr(Parsers.scala:2489)
+	dotty.tools.dotc.parsing.Parsers$Parser.$init$$$anonfun$9(Parsers.scala:2460)
+	dotty.tools.dotc.parsing.Parsers$Parser.subPart(Parsers.scala:723)
+	dotty.tools.dotc.parsing.Parsers$Parser.subExpr(Parsers.scala:2462)
+	dotty.tools.dotc.parsing.Parsers$Parser.defDefOrDcl(Parsers.scala:4208)
+	dotty.tools.dotc.parsing.Parsers$Parser.defOrDcl(Parsers.scala:4089)
+	dotty.tools.dotc.parsing.Parsers$Parser.templateStatSeq$$anonfun$1(Parsers.scala:4946)
+	dotty.tools.dotc.parsing.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:559)
+	dotty.tools.dotc.parsing.Parsers$Parser.templateStatSeq(Parsers.scala:4954)
+	dotty.tools.dotc.parsing.Parsers$Parser.$anonfun$48(Parsers.scala:4822)
+	dotty.tools.dotc.parsing.Parsers$Parser.enclosed(Parsers.scala:623)
+	dotty.tools.dotc.parsing.Parsers$Parser.inBracesOrIndented(Parsers.scala:653)
+	dotty.tools.dotc.parsing.Parsers$Parser.inDefScopeBraces(Parsers.scala:659)
+	dotty.tools.dotc.parsing.Parsers$Parser.templateBody(Parsers.scala:4822)
+	dotty.tools.dotc.parsing.Parsers$Parser.templateBodyOpt(Parsers.scala:4815)
+	dotty.tools.dotc.parsing.Parsers$Parser.template(Parsers.scala:4792)
+	dotty.tools.dotc.parsing.Parsers$Parser.templateOpt(Parsers.scala:4804)
+	dotty.tools.dotc.parsing.Parsers$Parser.objectDef(Parsers.scala:4379)
+	dotty.tools.dotc.parsing.Parsers$Parser.tmplDef(Parsers.scala:4335)
+	dotty.tools.dotc.parsing.Parsers$Parser.defOrDcl(Parsers.scala:4095)
+	dotty.tools.dotc.parsing.Parsers$Parser.topStatSeq(Parsers.scala:4886)
+	dotty.tools.dotc.parsing.Parsers$Parser.topstats$1(Parsers.scala:5082)
+	dotty.tools.dotc.parsing.Parsers$Parser.topstats$1(Parsers.scala:5076)
+	dotty.tools.dotc.parsing.Parsers$Parser.compilationUnit$$anonfun$1(Parsers.scala:5087)
+	dotty.tools.dotc.parsing.Parsers$Parser.checkNoEscapingPlaceholders(Parsers.scala:559)
+	dotty.tools.dotc.parsing.Parsers$Parser.compilationUnit(Parsers.scala:5092)
+	dotty.tools.dotc.parsing.Parsers$Parser.parse(Parsers.scala:207)
+	dotty.tools.dotc.parsing.Parser.parse$$anonfun$1(ParserPhase.scala:32)
+	scala.runtime.function.JProcedure1.apply(JProcedure1.java:15)
+	scala.runtime.function.JProcedure1.apply(JProcedure1.java:10)
+	dotty.tools.dotc.core.Phases$Phase.monitor(Phases.scala:539)
+	dotty.tools.dotc.parsing.Parser.parse(ParserPhase.scala:40)
+	dotty.tools.dotc.parsing.Parser.$anonfun$2(ParserPhase.scala:52)
+	scala.collection.Iterator$$anon$6.hasNext(Iterator.scala:495)
+	scala.collection.Iterator$$anon$9.hasNext(Iterator.scala:597)
+	scala.collection.immutable.List.prependedAll(List.scala:156)
+	scala.collection.immutable.List$.from(List.scala:681)
+	scala.collection.immutable.List$.from(List.scala:681)
+	scala.collection.IterableOps$WithFilter.map(Iterable.scala:906)
+	dotty.tools.dotc.parsing.Parser.runOn(ParserPhase.scala:51)
+	dotty.tools.dotc.Run.runPhases$1$$anonfun$1(Run.scala:380)
+	scala.runtime.function.JProcedure1.apply(JProcedure1.java:15)
+	scala.runtime.function.JProcedure1.apply(JProcedure1.java:10)
+	scala.collection.ArrayOps$.foreach$extension(ArrayOps.scala:1324)
+	dotty.tools.dotc.Run.runPhases$1(Run.scala:373)
+	dotty.tools.dotc.Run.compileUnits$$anonfun$1$$anonfun$2(Run.scala:420)
+	dotty.tools.dotc.Run.compileUnits$$anonfun$1$$anonfun$adapted$1(Run.scala:420)
+	scala.Function0.apply$mcV$sp(Function0.scala:42)
+	dotty.tools.dotc.Run.showProgress(Run.scala:482)
+	dotty.tools.dotc.Run.compileUnits$$anonfun$1(Run.scala:420)
+	dotty.tools.dotc.Run.compileUnits$$anonfun$adapted$1(Run.scala:432)
+	dotty.tools.dotc.util.Stats$.maybeMonitored(Stats.scala:69)
+	dotty.tools.dotc.Run.compileUnits(Run.scala:432)
+	dotty.tools.dotc.Run.compileSources(Run.scala:319)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:180)
+	dotty.tools.pc.CachingDriver.run(CachingDriver.scala:56)
+	dotty.tools.pc.WithCompilationUnit.<init>(WithCompilationUnit.scala:29)
+	dotty.tools.pc.SimpleCollector.<init>(PcCollector.scala:362)
+	dotty.tools.pc.PcSemanticTokensProvider$Collector$.<init>(PcSemanticTokensProvider.scala:60)
+	dotty.tools.pc.PcSemanticTokensProvider.Collector$lzyINIT1(PcSemanticTokensProvider.scala:60)
+	dotty.tools.pc.PcSemanticTokensProvider.Collector(PcSemanticTokensProvider.scala:60)
+	dotty.tools.pc.PcSemanticTokensProvider.provide(PcSemanticTokensProvider.scala:83)
+	dotty.tools.pc.ScalaPresentationCompiler.semanticTokens$$anonfun$1(ScalaPresentationCompiler.scala:175)
+	scala.meta.internal.pc.CompilerAccess.withSharedCompiler(CompilerAccess.scala:149)
+	scala.meta.internal.pc.CompilerAccess.$anonfun$1(CompilerAccess.scala:93)
+	scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:210)
+	scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	java.base/java.lang.Thread.run(Thread.java:1474)
+```
+#### Short summary: 
+
+java.lang.NullPointerException: Cannot invoke "dotty.tools.dotc.parsing.Scanners$Region.commasExpectedInEnclosing()" because the return value of "dotty.tools.dotc.parsing.Scanners$Indented.outer()" is null
