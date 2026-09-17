@@ -1,3 +1,15 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/03-option/Exercises.scala:
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/03-option/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -C#
+	 -scala/Predef.C#
+offset: 1711
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/03-option/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -15,15 +27,6 @@ trait OrderedPoint
     if value != 0 then value else y.compare(that.y)
   }
 
-/*reflection on this assignment:
-  In this assingment i added new functionality to java.awt.Point without opening, changing or recompiling the .java file for that class.
-  This is done by defining a seperate trait with a self type (this: java.awt.Point => ) that binds the trait to to Point, without the 
-  trait having to be a Point in the class hieraci. That happens when I create an object with the 'new Point(...) with OrderedPoint'. 
-  So this does so that we can 'inject' new functionality into an old and extern type which can be very useful when touching old systems, 
-  where you do not want to or can't touch the original code. But it also has the constraint that it only works with the Point objects,
-  that we create ourselves. So a point that is from a library or other parts of the code where we haven't written 'new Point (...)', we
-  never get the functionality. 
-*/
 // Try the following (and similar) tests in the repl (sbt console):
 //
 // import adpro.option.*
@@ -74,7 +77,9 @@ object Tree:
     fold[Int, Int](t)((left, right) => left.max(right))((a: Int) => a)
 
   def map1[A, B](t: Tree[A])(f: A => B): Tree[B] = 
-    fold[A, Tree[B]](t)((left, right) => Branch(left, right))((a: A) => Leaf(f(a)))
+    fold[A, Tree[C@@]](t)((left, right) => Branch(Tree[B], Tree[B]))((a: A) => Leaf(f(a)))
+
+
 
 
 enum Option[+A]:
@@ -83,24 +88,13 @@ enum Option[+A]:
 
   // Exercise 6
 
-  def map[B](f: A => B): Option[B] = this match
-    case Some(a) => Some(f(a))
-    case None => None
+  def map[B](f: A => B): Option[B] = ???
 
-  def getOrElse[B >: A] (default: => B): B = this match
-    case Some(a) => a
-    case None => default
-  
+  def getOrElse[B >: A] (default: => B): B = ???
 
-  def flatMap[B](f: A => Option[B]): Option[B] =  this match
-    case Some(a) => f(a)
-    case None => None
-  
+  def flatMap[B](f: A => Option[B]): Option[B] =  ???
 
-  def filter(p: A => Boolean): Option[A] = this match
-    case Some(a) => if p(a) then Some(a) else None
-    case None => None
-  
+  def filter(p: A => Boolean): Option[A] = ???
 
   // Scroll down for Exercise 7, in the bottom of the file, outside Option
 
@@ -113,21 +107,20 @@ end Option
 // Exercise 9
 
 def map2[A, B, C](ao: Option[A], bo: Option[B])(f: (A,B) => C): Option[C] =
-  for 
-    a <- ao
-    b <- bo
-  yield
-    f(a,b)
+  ???
 
 // Exercise 10
 
 def sequence[A](aos: List[Option[A]]): Option[List[A]] =
-  aos.foldRight(Some(List()))((ao, acc) => map2(ao, acc)((element, list) => element :: list))
+  ???
 
 // Exercise 11
 
 def traverse[A, B](as: List[A])(f: A => Option[B]): Option[List[B]] =
-  as.foldRight(Some(List()))((a, acc) => map2(f(a), acc)((element, list) => element :: list))
+  ???
+
+
+
 
 // Exercise that are outside the Option companion object
 
@@ -140,13 +133,10 @@ def headOption[A](lst: List[A]): Option[A] = lst match
 // Exercise 7
 
 def headGrade(lst: List[(String,Int)]): Option[Int] =
-  headOption(lst).map(grade => grade._2)
+  ???
 
 def headGrade1(lst: List[(String,Int)]): Option[Int] =
-  for 
-    x <- headOption(lst)
-  yield
-    x._2
+  ???
 
 // Implemented in the text book
 
@@ -157,13 +147,13 @@ def mean(xs: Seq[Double]): Option[Double] =
 // Exercise 8
 
 def variance(xs: Seq[Double]): Option[Double] =
-  mean(xs).flatMap(m => mean(xs.map(x => (x - m) * (x - m))))
-
-def variance1(xs: Seq[Double]): Option[Double] =
-  for 
-    m <- mean(xs)
-    v <- mean(xs.map(x => (x - m) * (x - m)))
-  yield
-    v
+  ???
 
 // Scroll up, to the Option object for Exercise 9
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 
