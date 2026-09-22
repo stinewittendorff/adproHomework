@@ -1,3 +1,16 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/04-lazy-list/Exercises.scala:
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/04-lazy-list/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -LazyList.B#
+	 -B#
+	 -scala/Predef.B#
+offset: 7698
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/04-lazy-list/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -165,12 +178,12 @@ enum LazyList[+A]:
   // Exercise 8
   
   // Note: The type is incorrect, you need to fix it
-  def map[B](f: A => B): LazyList[B] = 
-    foldRight(empty)((a, acc) => cons(f(a), acc))
+  def map(f: A => B): LazyList[B] = 
+    foldRight(empty[@@B])((a, acc) => cons(f(a), acc))
 
   // Note: The type is incorrect, you need to fix it
-  def filter(p: A => Boolean): LazyList[A] = 
-    foldRight(empty)((a, acc) => if p(a) then cons(a, acc) else acc)
+  def filter(p: Any): LazyList[Any] = 
+    ???
 
   /* Note: The type is given correctly for append, because it is more complex.
    * Try to understand the type. The contsraint 'B >: A' requires that B is a
@@ -185,50 +198,32 @@ enum LazyList[+A]:
    * getOrElse last week, and the type of foldRight this week.
    */
   def append[B >: A](that: => LazyList[B]): LazyList[B] = 
-    foldRight(that)((a, acc) => cons(a,acc))
+    ???
 
   // Note: The type is incorrect, you need to fix it
-  def flatMap[B](f: A => LazyList[B]): LazyList[B] = 
-    foldRight(empty)((a,acc) => f(a).append(acc))
+  def flatMap(f: Any): LazyList[Any] = 
+    ???
 
   // Exercise 9
-  // It is effective on lazy lists because filter is built with cons, where the tail is a by-name, so that means that it only builds one
-  // elemeent at a time, when it is asked for. And then when .headOption only asks for the first element, it stops the whole 'chain' as
-  // soon as the first element is found. The rest of the list is never touched, this only does so that find can be used on a lot of list
-  // as long, as there exists a match. 
-  // The reason that this implementation is not optimal on normal list, filter(p) would traverse the whole list and would build a complete
-  // list with all the matches, before .headOption is even called. So even though you only want the first match, you would have to go through
-  // and 'save' the entire list of matches and the rest is just discarded.
-  // So basically lazy list joins filter and .headOption together to just one run through, that will terminate at the first match. And on
-  // regular list, these two are independent and filter would always be run through entirely, no matter how little of the result we need.
+  // Type answer here
+  //
+  // ...
+  //
   // Scroll down to Exercise 10 in the companion object below
 
   // Exercise 13
 
   def mapUnfold[B](f: A => B): LazyList[B] =
-    unfold(this)(func => func match
-      case Empty => None
-      case Cons(h,t) => Some((f(h()),t()))
-    )
+    ???
 
   def takeUnfold(n: Int): LazyList[A] =
-    unfold(this, n) (func => func match
-      case (Cons(h,t), 1) => Some(h(), (empty, 0))
-      case (Cons(h,t), n) if n > 1 => Some(h(), (t(), n-1))
-      case _ => None
-    )
+    ???
 
   def takeWhileUnfold(p: A => Boolean): LazyList[A] =
-    unfold(this) (func => func match
-      case Cons(h,t) if (p(h())) => Some(h(),t())
-      case _ => None
-    )
+    ???
 
   def zipWith[B >: A, C](ope: (=> B, => B) => C)(bs: LazyList[B]): LazyList[C] =
-    unfold(this, bs)(func => func match
-      case (Cons(h1,t1), Cons(h2,t2)) => Some((ope(h1(), h2()), (t1(), t2())))
-      case _ => None
-    )
+    ???
 
 end LazyList // enum ADT
 
@@ -266,22 +261,26 @@ object LazyList:
   // Exercise 10
 
   // Note: The type is incorrect, you need to fix it
-  lazy val fibs: LazyList[Int] =
-    def fibsHelper(curr: Int, next: Int): LazyList[Int] =
-      cons(curr, fibsHelper(next, curr + next))
-    fibsHelper(0,1)
+  lazy val fibs: Any = 
+    ???
 
   // Exercise 11
 
   def unfold[A,S](z: S)(f: S => Option[(A, S)]): LazyList[A] =
-    f(z).map((a, b) => cons(a, unfold(b)(f))).getOrElse(empty)
+    ???
 
   // Exercise 12
 
   // Note: The type is incorrect, you need to fix it
-  lazy val fibsUnfold: LazyList[Int] = 
-    unfold((0,1))((curr,next) => Some(curr, (next, curr + next)))
+  lazy val fibsUnfold: Any = ???
 
   // Scroll up for Exercise 13 to the enum
 
 end LazyList // companion object
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

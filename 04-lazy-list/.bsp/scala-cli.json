@@ -1,0 +1,20 @@
+{
+  "name": "scala-cli",
+  "argv": [
+    "/opt/homebrew/bin/scala-cli",
+    "bsp",
+    "--json-options",
+    "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/04-lazy-list/.scala-build/ide-options-v2.json",
+    "--json-launcher-options",
+    "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/04-lazy-list/.scala-build/ide-launcher-options.json",
+    "--envs-file",
+    "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/04-lazy-list/.scala-build/ide-envs.json",
+    "/Users/stinewittendorff/Desktop/Kandidat ITU/Advanced Programming/adproHomework/04-lazy-list"
+  ],
+  "version": "1.16.0",
+  "bspVersion": "2.1.1",
+  "languages": [
+    "scala",
+    "java"
+  ]
+}
