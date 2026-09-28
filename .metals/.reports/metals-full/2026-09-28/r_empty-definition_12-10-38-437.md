@@ -1,3 +1,25 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala:
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -adpro/lazyList/LazyList.Int.MaxValue.toDouble.
+	 -adpro/lazyList/LazyList.Int.MaxValue.toDouble#
+	 -adpro/lazyList/LazyList.Int.MaxValue.toDouble().
+	 -State.Int.MaxValue.toDouble.
+	 -State.Int.MaxValue.toDouble#
+	 -State.Int.MaxValue.toDouble().
+	 -Int.MaxValue.toDouble.
+	 -Int.MaxValue.toDouble#
+	 -Int.MaxValue.toDouble().
+	 -scala/Predef.Int.MaxValue.toDouble.
+	 -scala/Predef.Int.MaxValue.toDouble#
+	 -scala/Predef.Int.MaxValue.toDouble().
+offset: 1222
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -36,7 +58,7 @@ object RNG:
 
   def double(rng: RNG): (Double, RNG) = 
     val (it, rnd) = nonNegativeInt(rng)
-    (it / (Int.MaxValue.toDouble + 1), rnd)
+    (it / (Int.MaxValue.toDou@@ble + 1), rnd)
 
   // Exercise 3
   
@@ -60,7 +82,7 @@ object RNG:
     if (size <= 0) then
       (list, rng)
     else
-      val (it ,rnd) = int(rng)
+      val (it ,rnd) = nonNegativeInt(rng)
       val (list1, rnd1) = ints(size - 1)(rnd)
       val list2 = it :: list1
       (list2, rnd1)
@@ -84,39 +106,28 @@ object RNG:
   // Exercise 5
 
   lazy val double2: Rand[Double] = 
-    map(nonNegativeInt)(it => it / (Int.MaxValue.toDouble + 1))
+    ???
 
   // Exercise 6
 
   def map2[A, B, C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = 
-    rng => {
-      val (a, rng2) = ra(rng)
-      val (b, rng3) = rb(rng2)
-      (f(a,b), rng3)
-    }
+    ???
 
-  // Exercise 7  aos.foldRight(Some(List()))((ao, acc) => map2(ao, acc)((element, list) => element :: list))
-
+  // Exercise 7
 
   def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
-    ras.foldRight(unit(List.empty[A]))((ra, acc) => map2(ra, acc)((element, list) => element :: list))
+    ??? 
 
   def ints2(size: Int): Rand[List[Int]] =
-    sequence(List.fill(size)(int))
+    ???
 
   // Exercise 8
 
   def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] =
-    rng => {
-      val(a, rng2) = f(rng)
-      val h = g(a)
-      h(rng2)
-    }
+    ???
 
   def nonNegativeLessThan(bound: Int): Rand[Int] =
-    flatMap(nonNegativeInt) : i =>
-      val mod = i % bound
-      if i + (bound - 1) - mod >= 0 then unit(mod) else nonNegativeLessThan(bound)
+    ???
 
 end RNG
 
@@ -128,24 +139,13 @@ case class State[S, +A](run: S => (A, S)):
   // Search for the second part (sequence) below
   
   def flatMap[B](f: A => State[S, B]): State[S, B] = 
-    State { s =>
-      val (a, sa) = run(s)
-      val h = f(a)
-      h.run(sa)
-      }
+    ???
 
   def map[B](f: A => B): State[S, B] = 
-    State { s =>
-      val (a, sa) = run(s)
-      (f(a), sa)
-      }
+    ???
 
   def map2[B,C](sb: State[S, B])(f: (A, B) => C): State[S, C] = 
-    State { s =>
-      val (a, sa) = run(s)
-      val (b, sab) =  sb.run(sa)
-      (f(a,b), sab)
-      }
+    ???
 
 
 object State:
@@ -169,28 +169,28 @@ object State:
   // Exercise 9 (sequence, continued)
  
   def sequence[S,A](sas: List[State[S, A]]): State[S, List[A]] =
-    sas.foldRight(unit[S, List[A]](Nil))((sa, acc) => sa.map2(acc)((element, list) => element :: list))
-
+    ???
 
   import adpro.lazyList.LazyList
 
   // Exercise 10 (stateToLazyList)
-
+  
   def stateToLazyList[S, A](s: State[S,A])(initial: S): LazyList[A] =
-    val(a, sa) = s.run(initial)
-    LazyList.cons(a, stateToLazyList(s)(sa))
+    ???
 
   // Exercise 11 (lazyInts out of stateToLazyList)
   
   def lazyInts(rng: RNG): LazyList[Int] = 
-    stateToLazyList(State[RNG, Int](rng2=> rng2.nextInt))(rng)
+    ???
 
   lazy val tenStrictInts: List[Int] = 
-    lazyInts(RNG.SimpleRNG(50)).take(10).toList
-    //val num = RNG.SimpleRNG(50)
-    //val flow = lazyInts(num)
-    //val tensLazyList = flow.take(10)
-    //tensLazyList.toList
-
+    ???
 
 end State
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

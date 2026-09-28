@@ -1,3 +1,17 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala:List#
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -adpro/lazyList/LazyList.List#
+	 -State.List#
+	 -List#
+	 -scala/Predef.List#
+offset: 2918
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -60,7 +74,7 @@ object RNG:
     if (size <= 0) then
       (list, rng)
     else
-      val (it ,rnd) = int(rng)
+      val (it ,rnd) = nonNegativeInt(rng)
       val (list1, rnd1) = ints(size - 1)(rnd)
       val list2 = it :: list1
       (list2, rnd1)
@@ -101,22 +115,16 @@ object RNG:
   def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
     ras.foldRight(unit(List.empty[A]))((ra, acc) => map2(ra, acc)((element, list) => element :: list))
 
-  def ints2(size: Int): Rand[List[Int]] =
-    sequence(List.fill(size)(int))
+  def ints2(size: Int): Rand[@@List[Int]] =
+    sequence(List.fill(size)(1))
 
   // Exercise 8
 
   def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] =
-    rng => {
-      val(a, rng2) = f(rng)
-      val h = g(a)
-      h(rng2)
-    }
+    ???
 
   def nonNegativeLessThan(bound: Int): Rand[Int] =
-    flatMap(nonNegativeInt) : i =>
-      val mod = i % bound
-      if i + (bound - 1) - mod >= 0 then unit(mod) else nonNegativeLessThan(bound)
+    ???
 
 end RNG
 
@@ -128,24 +136,13 @@ case class State[S, +A](run: S => (A, S)):
   // Search for the second part (sequence) below
   
   def flatMap[B](f: A => State[S, B]): State[S, B] = 
-    State { s =>
-      val (a, sa) = run(s)
-      val h = f(a)
-      h.run(sa)
-      }
+    ???
 
   def map[B](f: A => B): State[S, B] = 
-    State { s =>
-      val (a, sa) = run(s)
-      (f(a), sa)
-      }
+    ???
 
   def map2[B,C](sb: State[S, B])(f: (A, B) => C): State[S, C] = 
-    State { s =>
-      val (a, sa) = run(s)
-      val (b, sab) =  sb.run(sa)
-      (f(a,b), sab)
-      }
+    ???
 
 
 object State:
@@ -169,28 +166,28 @@ object State:
   // Exercise 9 (sequence, continued)
  
   def sequence[S,A](sas: List[State[S, A]]): State[S, List[A]] =
-    sas.foldRight(unit[S, List[A]](Nil))((sa, acc) => sa.map2(acc)((element, list) => element :: list))
-
+    ???
 
   import adpro.lazyList.LazyList
 
   // Exercise 10 (stateToLazyList)
-
+  
   def stateToLazyList[S, A](s: State[S,A])(initial: S): LazyList[A] =
-    val(a, sa) = s.run(initial)
-    LazyList.cons(a, stateToLazyList(s)(sa))
+    ???
 
   // Exercise 11 (lazyInts out of stateToLazyList)
   
   def lazyInts(rng: RNG): LazyList[Int] = 
-    stateToLazyList(State[RNG, Int](rng2=> rng2.nextInt))(rng)
+    ???
 
   lazy val tenStrictInts: List[Int] = 
-    lazyInts(RNG.SimpleRNG(50)).take(10).toList
-    //val num = RNG.SimpleRNG(50)
-    //val flow = lazyInts(num)
-    //val tensLazyList = flow.take(10)
-    //tensLazyList.toList
-
+    ???
 
 end State
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 

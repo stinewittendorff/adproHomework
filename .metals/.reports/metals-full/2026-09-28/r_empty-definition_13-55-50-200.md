@@ -1,3 +1,18 @@
+error id: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala:LazyList#
+file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+empty definition using pc, found symbol in pc: 
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+	 -adpro/lazyList/LazyList#
+	 -adpro/lazyList/LazyList.LazyList#
+	 -State.LazyList#
+	 -LazyList#
+	 -scala/Predef.LazyList#
+offset: 5077
+uri: file://<HOME>/Desktop/Kandidat%20ITU/Advanced%20Programming/adproHomework/05-state/Exercises.scala
+text:
+```scala
 // Advanced Programming, A. Wąsowski, IT University of Copenhagen
 // Based on Functional Programming in Scala, 2nd Edition
 
@@ -175,22 +190,25 @@ object State:
   import adpro.lazyList.LazyList
 
   // Exercise 10 (stateToLazyList)
-
+  
+  // def unfold[A,S](z: S)(f: S => Option[(A, S)]): LazyList[A] =
+    //f(z).map((a, b) => cons(a, unfold(b)(f))).getOrElse(empty)
   def stateToLazyList[S, A](s: State[S,A])(initial: S): LazyList[A] =
-    val(a, sa) = s.run(initial)
-    LazyList.cons(a, stateToLazyList(s)(sa))
+    s.run(initial).map((a,b) => cons(a, stateToLazyList(b)(s))).getOrElse(empty)
 
   // Exercise 11 (lazyInts out of stateToLazyList)
   
-  def lazyInts(rng: RNG): LazyList[Int] = 
-    stateToLazyList(State[RNG, Int](rng2=> rng2.nextInt))(rng)
+  def lazyInts(rng: RNG): @@LazyList[Int] = 
+    ???
 
   lazy val tenStrictInts: List[Int] = 
-    lazyInts(RNG.SimpleRNG(50)).take(10).toList
-    //val num = RNG.SimpleRNG(50)
-    //val flow = lazyInts(num)
-    //val tensLazyList = flow.take(10)
-    //tensLazyList.toList
-
+    ???
 
 end State
+
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: 
