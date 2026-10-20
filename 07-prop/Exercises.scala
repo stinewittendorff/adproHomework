@@ -4,17 +4,18 @@
 package adpro.prop
 
 import adpro.state.*
+import scala.annotation.static
 
 val TODO = 42
 
 // Exercise 1
 
-lazy val rng1: RNG = ???
+lazy val rng1: RNG = RNG.Simple(TODO)
 
 // Exercise 2
 
-lazy val (x, rng2): (Int, RNG) = ???
-lazy val y = ???
+lazy val (x, rng2): (Int, RNG) = rng1.nextInt
+lazy val y = rng2.nextInt._1
 
 // Exercise 3
 
@@ -31,10 +32,10 @@ object Exercise_3:
   // allow the teachers to test them with different mutants of `minimum`.
 
   def p1Min (minimum: List[Int] => Int): org.scalacheck.Prop =
-    ???
+    org.scalacheck.Prop.forAll(intList){l => l.forall(a => a >= minimum(l))}
 
   def p2Min (minimum: List[Int] => Int): org.scalacheck.Prop =
-    ???
+    org.scalacheck.Prop.forAll(intList){l => l.exists(a => a == minimum(l))}
 
 end Exercise_3
 
@@ -48,7 +49,10 @@ object Exercise_4:
     def check: Boolean
 
     infix def && (that: Prop): Prop =
-      ???
+      new Prop: 
+        def check: Boolean = 
+          self.check && that.check
+      
 
 end Exercise_4
 
@@ -63,36 +67,41 @@ object Gen:
 
   // Exercise 5
   def choose (start: Int, stopExclusive: Int): Gen[Int] =
-    ???
+    State.apply(RNG.nonNegativeInt).map(n => (n % (stopExclusive - start)) + start)
 
   // Exercise 6
 
   def unit[A] (a: =>A): Gen[A] =
-    ???
+    State.unit(a)
 
   def boolean: Gen[Boolean] =
-    ???
+    State.apply(RNG.boolean)
+    //choose(2,5).map(n =>  n % 2 == 0)
 
   def double: Gen[Double] =
-    ???
+    State.apply(RNG.intDouble).map((it, dob) => it.toDouble + dob)
 
   // Exercise 7
 
   extension [A](self: Gen[A])
 
     def listOfN(n: Int): Gen[List[A]] =
-      ???
+      State.sequence(List.fill(n)(self))
 
   // Exercise 8
 
-  // Write here ... ???
+  /* listOfN is implemented as an extension method, and this  is because Gen[A] is an opaque type alias for State[RNG, A] and not a class. 
+  And an opaque type is only a name for an exisiting type, so you cannot just add regular methods to it, like you can do with a class or an
+  trait. So when you want to call methods directly on a generator like 'g.listOfN(n),  they have to be defined as an extension method. 
+  The advantage is that the representation is hidden from the user and that the methods only will apply for Gen and not for all of the
+  State[RNG, A]. And also no wrapper object is created at runtime, as it would have been if Gen was a class. */
 
   // Exercise 9
 
   extension [A](self: Gen[A])
 
     def flatMap[B](f: A => Gen[B]): Gen[B] =
-      ???
+      State.flatMap(self)(f)
 
     // It will be convenient to also have map (uses flatMap)
     def map[B](f: A => B): Gen[B] =
@@ -103,14 +112,14 @@ object Gen:
 
   extension [A](self: Gen[A])
     def listOf(size: Gen[Int]): Gen[List[A]] =
-      ???
+      size.flatMap( n => self.listOfN(n))
 
 
   // Exercise 11
 
   extension [A](self: Gen[A])
     def union (that: Gen[A]): Gen[A] =
-      ???
+      boolean.flatMap(c => if c then self else that)
 
 end Gen
 
@@ -124,22 +133,22 @@ object Exercise_12:
   // listOf are tested (so rename if you use another than the first)
 
   def listOfN[A: Gen](n: Int): Gen[List[A]] =
-    ???
+    summon[Gen[A]].listOfN(n)
 
-  def listOfN_[A: Gen]: Int => Gen[List[A]] =
+  /*def listOfN_[A: Gen]: Int => Gen[List[A]] =
     ???
 
   def listOfN__ [A](n: Int)(using genA: Gen[A]): Gen[List[A]] =
-    ???
+    ???*/
 
   // Choose one of the following templates, but note only listOfN and
   // listOf are tested (so rename if you use another than the first)
 
   def listOf[A: Gen](using genInt: Gen[Int]): Gen[List[A]] =
-    ???
+    summon[Gen[A]].listOf(genInt)
 
-  def listOf_[A] (using genInt: Gen[Int], genA: Gen[A]): Gen[List[A]] =
-    ???
+  //def listOf_[A] (using genInt: Gen[Int], genA: Gen[A]): Gen[List[A]] =
+    //???
 
 end Exercise_12
 
@@ -196,10 +205,12 @@ def forAllNotSized[A] = forAll[A]
 
 extension (self: Prop)
   infix def && (that: Prop): Prop = (maxSize, tcs, rng) =>
-    ???
+    val s = self(maxSize, tcs, rng)
+    if s.isFalsified then s else that(maxSize, tcs, rng)
 
   infix def || (that: Prop): Prop = (maxSize, tcs, rng) =>
-    ???
+    val s = self(maxSize, tcs, rng)
+    if s.isFalsified then that(maxSize, tcs, rng) else s
 
   def apply(maxSize: MaxSize, tcs: TestCases, rng: RNG): Result =
     self(maxSize, tcs, rng)
@@ -214,13 +225,13 @@ extension [A](self: SGen[A])
 
 extension [A](self: Gen[A])
   def unsized: SGen[A] =
-    ???
+    (_ => self)
 
 // Exercise 15
 
 extension [A](self: Gen[A])
   def list: SGen[List[A]] =
-    ???
+    (n => self.listOfN(n))
 
 // A sized implementation of prop, takes MaxSize to generate
 // test cases of given size.
@@ -275,10 +286,10 @@ object Exercise_16:
   // allow the teachers to test them with different mutants of `minimum`.
 
   def p1Min(minimum: List[Int] => Int): Prop =
-    ???
+    Prop.forAll(nonEmptyList){l => l.forall(a => a >= minimum(l))}
 
   def p2Min(minimum: List[Int] => Int): Prop =
-    ???
+    Prop.forAll(nonEmptyList){l => l.exists(a => a == minimum(l))}
 
 end Exercise_16
 
