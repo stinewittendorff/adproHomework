@@ -176,16 +176,20 @@ trait Parsers[ParseError, Parser[+_]]:
 
   extension [A](p1: Parser[A])
     def map2[B, C](p2: => Parser[B]) (f: (A, B) => C): Parser[C] =
-      ???
+      p1.flatMap(a => p2.flatMap(b => succeed(f(a,b))))
 
     def product[B] (p2: => Parser[B]): Parser[(A,B)] =
-      ???
+      p1.flatMap(a => p2.flatMap(b => succeed(a,b)))
 
     // Write here:
     //
-    // (1) ...
+    // (1) The reason that both map2 and product do not declare the type parameter A, is because it is already bound by the extension
+    // 'extension [A](p1: Parser[A])'. So when the method is called, A is therefore determined by the type of p1, which is the parser that the
+    // method is called on. Only the new types B and C have to be declared on the method it self
     //
-    // (2) ...
+    // (2) It takes the second argument by-name because then p2 will only be evaluated if and when p1 is succeeded, and it has to be that
+    // way so that recursive definitions such as 'many' can work. If p2 was evaluated straightaway then 'many' would call itself indefinitely
+    // already in the building of the parser, before it has even parsed something, which would result in a stack overflow. 
 
     def **[B](p2: => Parser[B]): Parser[(A, B)] =
       p1.product(p2)
@@ -203,38 +207,42 @@ trait Parsers[ParseError, Parser[+_]]:
 
   extension [A](p: Parser[A])
     def many: Parser[List[A]] =
-      ???
+      {p.map2(p.many)((a, rest) => a :: rest) | succeed(Nil)}
 
   // Exercise 3
 
   extension [A](p: Parser[A])
     def map[B](f: A => B): Parser[B] =
-      ???
+      p.flatMap(a => succeed(f(a)))
 
   // Exercise 4
 
   // A better name would be: howManyA
   def manyA: Parser[Int] =
-    ???
+    char('a').many.map(_.size)
 
   // Exercise 5
 
   extension [A](p: Parser[A])
     def many1: Parser[List[A]] =
-      ???
+      p.map2(p.many)((a, rest) => a :: rest)
 
-  // Write here ...
+  // Because many1 runs on a parser, it makes sense to write it as a method on the parser, so that you can write p.many1 instead
+  // of many1(p), exactly like p.many and p.map. This makes it easier to chain several combinators after each other, e.g. 
+  // 'char('a').many1.map(_.size)' so that the code is read from left to right.
 
   // Exercise 6
 
   extension [A](p: Parser[A])
     def listOfN(n: Int): Parser[List[A]] =
-      ???
+      if n <= 0 then succeed(Nil)
+      else p.map2(p.listOfN(n-1))((a,rest) => a :: rest)
 
   // Exercise 7
 
   def digitTimesA: Parser[Int] =
-    ???
+    regex("[0-9]".r).map(s => s.toInt).flatMap(n => char('a').listOfN(n).map(_ => n))
+    
 
   // For Exercise 8 read the code below until you find it.
 
@@ -415,7 +423,7 @@ object Sliceable
 
   /** Consume no characters and succeed with the given value */
   def succeed[A](a: A): Parser[A] =
-    ???
+    (s: ParseState) => Success(a, 0)
 
   // For Exercise 9 continue reading below
 
@@ -476,12 +484,20 @@ object Sliceable
 
   extension [A](p: Parser[A])
     def or(p2: => Parser[A]): Parser[A] =
-      ???
+      (s: ParseState) => 
+        p(s) match
+          case Failure(e, false) => p2(s)
+          case endResult => endResult
+      
 
   // Exercise 10
 
   def regex(r: Regex): Parser[String] = (s: ParseState) =>
-    ???
+    r.findPrefixOf(s.input) match
+      case Some(m) => if s.isSliced then Slice(m.length) else  Success(m, m.length)
+      case None => Failure(s.loc.toError(s"'$r'"), false)
+  
+
 
 end Sliceable
 
@@ -508,47 +524,47 @@ class JSONParser[ParseError, Parser[+_]](P: Parsers[ParseError,Parser]):
   // Exercise 11
 
   lazy val QUOTED: Parser[String] =
-    ???
+    regex(""""([^"]*)"""".r).map(_.dropRight(1).substring(1))
 
   lazy val DOUBLE: Parser[Double] =
-    ???
+    regex("""(\+|-)?[0-9]+(\.[0-9]+((e|E)(-|\+)?[0-9]+)?)?""".r).map(_.toDouble)
 
   lazy val ws: Parser[Unit] =
-    ???
+    regex("""\s+""".r).map(_ => ())
 
-  // Exercise 13
+  // Exercise 12
 
   lazy val jnull: Parser[JSON] =
-    ???
+    string("null") |* ws.? |* succeed(JNull)
 
   lazy val jbool: Parser[JSON] =
-    ???
+    (string("true") |* ws.? |* succeed(JBool(true))) | (string("false") |* ws.? |* succeed(JBool(false)))
 
   lazy val jstring: Parser[JString] =
-    ???
+    (QUOTED *| ws.?).map(JString(_))
 
   lazy val jnumber: Parser[JNumber] =
-    ???
+    (DOUBLE *| ws.?).map(JNumber(_))
 
   // Exercise 13
 
   private lazy val commaSeparatedVals: Parser[List[JSON]] =
-    ???
+    json.map2((char(',') |* ws.? |* json).*)((first, rest) => first :: rest) | succeed(Nil)
 
   lazy val jarray: Parser[JArray] =
-    ???
+    (char('[') |* ws.? |* commaSeparatedVals *| char(']') *| ws.?).map(l => JArray(l.toVector))
 
   lazy val field: Parser[(String,JSON)] =
-    ???
+    QUOTED *| ws.? *| char(':') *| ws.? ** json 
 
   private lazy val commaSeparatedFields: Parser[List[(String,JSON)]] =
-    ???
+    field.map2((char(',') |* ws.? |* field).*)((first, rest) => first :: rest) | succeed(Nil)
 
   lazy val jobject: Parser[JObject] =
-    ???
+    (char('{') |* ws.? |* commaSeparatedFields *| char('}') *| ws.?).map(l => JObject(l.toMap))
 
   lazy val json: Parser[JSON] =
-    ???
+    ws.? |* (jstring | jobject | jarray | jnull | jnumber | jbool )
 
   // Exercise 14 (no code)
 
@@ -556,8 +572,12 @@ class JSONParser[ParseError, Parser[+_]](P: Parsers[ParseError,Parser]):
   //
   // Write here:
   //
-  // (1) ...
+  // (1) It is possible to place the laws inside the abstract trait Parsers because the laws only use the operations that are declared in the 
+  // trait (string, run, or and so on), but not their implementation. The compiler just has to be able to check that the types match and it 
+  // can do that without a concrete implementation. And the tests can only be run when the trait gets an implementation.
   //
-  // (2) ...
+  // (2) The advantage of placing the laws in the abstract trait is that laws are only written once and then apply to every implementations
+  //  of Parsers. If you create a new implementation, you get the tests for free, and therefore can test that it behaves correctly. 
+  // And at the same time the laws acts as a specification of what a parser should be able to do independently of its representation.
 
 end JSONParser
